@@ -5,7 +5,5 @@ width = 300;
 I = imread('resistors.JPG');
 RGB = imresize(I, [height width]);
 
-new = CreateMask(RGB);
-imshow(new)
-
-
+HSV = rgb2hsv(RGB);
+colorThresholder(I)

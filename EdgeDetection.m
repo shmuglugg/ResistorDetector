@@ -1,7 +1,11 @@
-function [outputArg1,outputArg2] = EdgeDetection(inputArg1,inputArg2)
-%EDGEDETECTION Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
-end
-
+%%Read resistor picture file and output it, displays image variable size and class.
+clc
+height = 300;
+width = 300;
+I1 = imread('resistors.JPG');
+I = rgb2gray(I1);
+BW1 = edge(I,'sobel');
+BW2 = edge(I,'canny');
+figure;
+imshowpair(BW1,BW2,'montage')
+title('Sobel Filter                                   Canny Filter');
