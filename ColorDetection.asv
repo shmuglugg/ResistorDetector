@@ -1,0 +1,8 @@
+function [outputArg1,outputArg2] = ColorDetection(inputArg1,inputArg2)
+%COLORDETECTION takes input of an image and outputs an array of
+%locations on the image where the center of band colors are detected
+%   Detailed explanation goes here
+outputArg1 = inputArg1;
+outputArg2 = inputArg2;
+end
+
