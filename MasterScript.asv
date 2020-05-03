@@ -3,8 +3,11 @@ clc
 I = imread('resistors.JPG');
 
 
-bands = BandFind(I);
-stuff = ResistorFinder(bands);
+bands = RedBandFind(I);
+if strcmp(bands{1,1}, 'red') 
+    centroid = bands{2,1}(1)
+   
+end
 
 
 % euclideandistance = hypot(bsxfun(@minus, X, X'), bsxfun(@minus, Y, Y'));

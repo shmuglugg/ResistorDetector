@@ -1,0 +1,33 @@
+function [output] = RedBandFind(Image)
+%RedBandFind Summary of this function goes here
+%   Detailed explanation goes here
+
+output = {};
+temp = {};
+strue = strel('square', 10);
+se = strel('rectangle',[5 20]);
+
+
+[BW, Mask] = createRedMask(Image);
+J = imerode(BW, strue);
+J = imdilate(J, se);
+J = imdilate(J, se);
+J = imdilate(J, se);
+J = imdilate(J, se);
+J = imdilate(J, se);
+J = imdilate(J, se);
+J = imclose(J, se);
+J = imfill(J, 'holes');
+
+
+stats = regionprops(J, 'centroid', 'BoundingBox');
+centroids = cat(1,stats.Centroid);
+n = length(centroids);
+
+
+for i = 1:n
+    temp = {'red' ; stats(i).Centroid ; stats(i).BoundingBox};
+    output = [output, temp];
+end
+end
+

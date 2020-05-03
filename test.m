@@ -1,6 +1,8 @@
+%%Read resistor picture file and output it, displays image variable size and class.
 clc
-if (2<4) && (4<3)
-    a=1
-    
-    b=2
-end
+
+I = imread('resistors.JPG');
+
+
+bands = RedBandFind(I)
+% stuff = ResistorFinder(bands);
