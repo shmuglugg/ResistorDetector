@@ -23,21 +23,17 @@ for i = 1:N
             prev = 0;
             
             for k = 1:3
-                curlow = 0;
-                prev = 0;
-                tracker = 0;
+                curlow = 100000;
+            
                 
                 for j = 1:N
                     tempcolor = bands{1,j};
                     tempx = bands{2,j}(1);
                     tempy = bands{2,j}(2);
-                    tempbounding = bands{3,j};
 
-                    distance = sqrt((tempx-x)^2+(tempy-y)^2);
+                    distance = sqrt(10*(tempx-x)^2+(tempy-y)^2);
 
-                    if (curlow == 0) & ~(j == prev) & ~(j == tracker);
-                        curlow = distance;
-                    elseif (distance < curlow) & ~(strcmp(tempcolor, 'gold')) & ~(j == prev) & ~(j == tracker)
+                    if ((distance < curlow) & ~(strcmp(tempcolor, 'gold')) & ~(j == prev) & ~(j == tracker))
                         curlow = distance;
                         idx = j;
                     end
@@ -46,7 +42,7 @@ for i = 1:N
              x = bands{2,idx}(1);
              y = bands{2,idx}(2)
              prev = tracker;
-             tracker = idx;
+             tracker = idx
             end
             resistance = resistcalc([bands{1,resistor(3)};bands{1,resistor(2)};bands{1,resistor(1)}]);
             bounds = bands{3,resistor(3)};
@@ -60,4 +56,5 @@ end
 
 
 end
+
 

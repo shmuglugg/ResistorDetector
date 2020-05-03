@@ -6,7 +6,7 @@ temp = {};
 
 I = imread('resistors.JPG');
 
-[BW, Image] = createWhiteMask(I);
+[BW, Image] = createYellowMask(I);
 
 strue = strel('square', 5);
 struewhitesecond = strel('square', 10);
@@ -16,16 +16,15 @@ se = strel('rectangle',[7 20]);
 struewhite = strel('square', 4);
 sewhite = strel('rectangle', [3 15]);
 
-J = imdilate(BW, struewhite);
-J = imerode(J, sewhite);
-J = imerode(J, struewhitesecond);
+J = imerode(BW, strue);
 J = imdilate(J, se);
 J = imdilate(J, se);
 J = imdilate(J, se);
 J = imdilate(J, se);
 J = imdilate(J, se);
+J = imdilate(J, se);
+J = imclose(J, se);
 J = imfill(J, 'holes');
-J = imclose(J, strue);
 
 stats = regionprops(J, 'centroid', 'BoundingBox');
 centroids = cat(1,stats.Centroid);
