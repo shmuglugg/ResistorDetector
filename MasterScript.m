@@ -1,6 +1,6 @@
 %%Read resistor picture file and output it, displays image variable size and class.
 clc
-I = imread('resistors.JPG');
+I = imread('resistors8.JPG');
 
 
 bands = BandFind(I);
@@ -13,7 +13,8 @@ figure, imshow(I);
 hold on;
 for i = 1:n
     rectangle('Position',boundaries(i,:),'EdgeColor','r','LineWidth',2)
-    text(centroids(i,1),centroids(i,2),int2str(resistances(i)));
+    text(centroids(i,1),centroids(i,2),int2str(resistances(i)), 'Color', 'cyan');
+   
 end
 hold off;
 % euclideandistance = hypot(bsxfun(@minus, X, X'), bsxfun(@minus, Y, Y'));

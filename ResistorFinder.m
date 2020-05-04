@@ -32,7 +32,7 @@ for i = 1:N
                     tempx = bands{2,j}(1);
                     tempy = bands{2,j}(2);
 
-                    distance = sqrt(10*(tempx-x)^2+(tempy-y)^2);
+                    distance = sqrt((tempx-x)^2+(tempy-y)^2);
 
                     if ((distance < curlow) & ~(strcmp(tempcolor, 'gold')) & ~(j == prev) & ~(j == tracker))
                         curlow = distance;
