@@ -1,10 +1,12 @@
-function [output] = ResistorFinder(bands)
+function [resistances, boundaries, centroids] = ResistorFinder(bands)
 %RESISTCALC Summary of this function goes here
 %   Detailed explanation goes here
 
 tracker = 0;
 resistor = [];
-output = {};
+boundaries = [];
+centroids = [];
+resistances = [];
 temp = bands;
 
 N = length(bands);
@@ -24,7 +26,6 @@ for i = 1:N
             
             for k = 1:3
                 curlow = 100000;
-            
                 
                 for j = 1:N
                     tempcolor = bands{1,j};
@@ -40,13 +41,16 @@ for i = 1:N
                 end
              resistor(k) = idx;
              x = bands{2,idx}(1);
-             y = bands{2,idx}(2)
+             y = bands{2,idx}(2);
              prev = tracker;
-             tracker = idx
+             tracker = idx;
             end
             resistance = resistcalc([bands{1,resistor(3)};bands{1,resistor(2)};bands{1,resistor(1)}]);
-            bounds = bands{3,resistor(3)};
-            output = {output, {resistance, bounds}};
+            bounds = bands{3,idx};
+            centroid = bands{2,idx};
+            centroids = [centroids; centroid];
+            boundaries = [boundaries; bounds];
+            resistances = [resistances, resistance];
     end
 end
             

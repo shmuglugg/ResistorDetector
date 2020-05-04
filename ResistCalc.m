@@ -2,10 +2,12 @@ function [output] = resistcalc(colors)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 value = 0;
-colors
+colors;
 
 for i = 1:3
-    if strcmp(colors(i,:), 'brown')
+    if strcmp(colors(i,:), 'black')
+        value = 0;
+    elseif strcmp(colors(i,:), 'brown')
         value = 1;
     elseif strcmp(colors(i,:), 'red')
         value = 2;
